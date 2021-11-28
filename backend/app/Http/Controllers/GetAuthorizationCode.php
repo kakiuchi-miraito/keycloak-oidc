@@ -17,7 +17,6 @@ class GetAuthorizationCode extends Controller
         $encoded = base64_encode(hash('sha256', $codeVerifier, true));
         $codeChallenge = strtr(rtrim($encoded, '='), '+/', '-_');
 
-        // ログイン状態でなければ、keycloak側のログイン画面を表示する
         header(
             'Location: http://localhost:8082/auth/realms/master/protocol/openid-connect/auth?' .
             'response_type=code&' .
